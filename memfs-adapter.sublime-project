@@ -1,0 +1,28 @@
+{
+	"debugger_configurations":
+	[
+		{
+			"cwd": "${workspaceFolder}",
+			"name": "Launch via npm",
+			"outputCapture": "std",
+			"request": "launch",
+			"runtimeArgs":
+			[
+				"ssh",
+				"-t",
+				"-c",
+				"cd /vagrant; npm test --node-options --inspect-brk=0.0.0.0:9229"
+			],
+			"runtimeExecutable": "vagrant",
+			"type": "node"
+		}
+	],
+	"folders":
+	[
+		{
+			"path": ".",
+			"folder_exclude_patterns": [ ".vagrant", "node_modules", ".c8" ],
+			"binary_file_patterns": [ "dist/**" ]
+		}
+	]
+}

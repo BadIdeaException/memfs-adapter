@@ -1,0 +1,81 @@
+{
+  "name": "memfs-adapter",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Filesystem mocking with the mock-fs API built on top of memfs.",
+  "homepage": "https://github.com/BadIdeaException/memfs-adapter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BadIdeaException/memfs-adapter.git"
+  },
+  "keywords": [
+    "mock-fs",
+    "memfs",
+    "mock",
+    "fs",
+    "filesystem",
+    "file system",
+    "virtual",
+    "test",
+    "testing",
+    "fixtures",
+    "memory",
+    "memory-fs",
+    "adapter"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && npx tsc",
+    "pretest": "npm run build",
+    "test": "mocha test/**/*.spec.ts",
+    "debug-test": "mocha --inspect-wait=0.0.0.0:9229 test/**/*.spec.ts",
+    "debug-local-test": "mocha inspect test/**/*.spec.ts",
+    "posttest": "find test/ -type f -name '*.spec.js' -delete",
+    "coverage": "npx c8 npm test"
+  },
+  "author": "BadIdeaException",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/core": "^0.6.0",
+    "@eslint/js": "^9.11.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/chai": "^4.3.19",
+    "@types/eslint__js": "^8.42.3",
+    "@types/mocha": "^10.0.8",
+    "@types/mock-fs": "^4.13.4",
+    "@types/node": "^22.5.5",
+    "c8": "^10.1.2",
+    "chai": "^5.1.1",
+    "eslint": "^9.11.0",
+    "eslint-plugin-chai-expect": "^3.1.0",
+    "eslint-plugin-chai-friendly": "^1.0.1",
+    "eslint-plugin-mocha": "^10.5.0",
+    "mocha": "^10.7.3",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.6.0",
+    "typescript-eslint-language-service": "^5.0.5"
+  },
+  "mocha": {
+    "node-option": [
+      "import=tsx"
+    ],
+    "recursive": true
+  },
+  "c8": {
+    "all": true,
+    "src": [
+      "src/"
+    ],
+    "temp-directory": ".c8"
+  },
+  "prettier": {
+    "tabWidth": 4,
+    "useTabs": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "printWidth": 100
+  }
+}
