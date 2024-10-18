@@ -23,6 +23,9 @@
     "memory-fs",
     "adapter"
   ],
+  "export": {
+    "bootstrap": "dist/loader/register.js"
+  },
   "scripts": {
     "build": "rm -rf dist && npx tsc",
     "pretest": "npm run build",
@@ -58,7 +61,8 @@
   },
   "mocha": {
     "node-option": [
-      "import=tsx"
+      "import=tsx",
+      "import=./src/bootstrap/register.js"
     ],
     "recursive": true
   },
