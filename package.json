@@ -24,6 +24,7 @@
     "adapter"
   ],
   "export": {
+    ".": "dist/index.js",
     "bootstrap": "dist/loader/register.js"
   },
   "scripts": {
@@ -37,6 +38,9 @@
   },
   "author": "BadIdeaException",
   "license": "MIT",
+  "dependencies": {
+    "memfs": "^4.13.0"
+  },
   "devDependencies": {
     "@eslint/core": "^0.6.0",
     "@eslint/js": "^9.11.0",
