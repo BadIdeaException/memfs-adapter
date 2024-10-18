@@ -26,6 +26,7 @@ import load from './load.js';
 import os from 'node:os';
 import flatten from './flatten.js';
 import path from 'node:path';
+import bypass from './bypass.js';
 
 function createUnknownKindError(item: any, filename: string): Error {
 	const kind: string =
@@ -104,6 +105,7 @@ adapter.file = fileFactory;
 adapter.directory = directoryFactory;
 adapter.symlink = symlinkFactory;
 adapter.load = loaderFactory;
+adapter.bypass = bypass;
 adapter.restore = deactivate;
 
 export default adapter;

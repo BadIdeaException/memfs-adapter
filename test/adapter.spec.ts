@@ -244,4 +244,30 @@ describe('adapter', function () {
 			});
 		});
 	});
+
+	describe('bypass', function () {
+		it('should use the real filesystem', function () {
+			adapter({});
+			expect(adapter.bypass(() => fs.readFileSync('./test/fixtures/file1', 'utf8'))).to.equal(
+				'file1'
+			);
+		});
+
+		it('should return a promise if the operation is async', async function () {
+			adapter({});
+			const result = adapter.bypass(() =>
+				fs.promises.readFile('./test/fixtures/file1', 'utf8')
+			);
+
+			expect(result).to.be.a('promise');
+			return result; // This allows mocha to wait for the promise to resolve for completion
+		});
+
+		it('should re-enable the mock filesystem on completion', function () {
+			adapter({ '/test': 'foo' });
+			adapter.bypass(() => fs.readFileSync('./test/fixtures/file1', 'utf8'));
+
+			expect(fs.readFileSync('/test', 'utf8')).to.equal('foo');
+		});
+	});
 });
