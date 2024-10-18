@@ -21,11 +21,11 @@ import {
 	isLoader
 } from './items.js';
 import type MockFs from 'mock-fs/lib/filesystem.js';
+import load from './load.js';
 
 import os from 'node:os';
 import flatten from './flatten.js';
 import path from 'node:path';
-import bypass from './bypass.js';
 
 function createUnknownKindError(item: any, filename: string): Error {
 	const kind: string =
@@ -48,7 +48,15 @@ function adapter(config: DirectoryLiteral = {}, options?: MockFs.Options): void 
 
 	config = flatten(config, '');
 
-	// todo: Pass 1: Execute loaders, amending the config accordingly
+	// Pass 1: Execute loaders, amending the config accordingly
+	for (const filename of Object.keys(config)) {
+		const item = config[filename];
+		if (isLoader(item)) {
+			const loaded = load((item as LoaderFactory).path, item.recursive ?? true);
+			for (let loadedFilename in loaded)
+				config[path.resolve(filename, loadedFilename)] = loaded[loadedFilename];
+		}
+	}
 
 	const items: string[] = Object.keys(config).sort();
 	const fs = activate();
@@ -95,6 +103,7 @@ function adapter(config: DirectoryLiteral = {}, options?: MockFs.Options): void 
 adapter.file = fileFactory;
 adapter.directory = directoryFactory;
 adapter.symlink = symlinkFactory;
+adapter.load = loaderFactory;
 adapter.restore = deactivate;
 
 export default adapter;

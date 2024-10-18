@@ -191,4 +191,57 @@ describe('adapter', function () {
 		factoryBaseTest(config => adapter.symlink({ path: '/target', ...config }), true);
 	});
 
+	describe('loading', function () {
+		let FIXTURE;
+		before(function () {
+			const PATH = './test/fixtures';
+			FIXTURE = {
+				file1: fs.readFileSync(path.join(PATH, 'file1'), 'utf8'),
+				file2: fs.readFileSync(path.join(PATH, 'file2'), 'utf8'),
+				file3: fs.readFileSync(path.join(PATH, 'directory', 'file3'), 'utf8'),
+				file4: fs.readFileSync(path.join(PATH, 'directory', 'file4'), 'utf8'),
+				file5: fs.readFileSync(path.join(PATH, 'directory', 'subdir', 'file5'), 'utf8')
+			};
+		});
+
+		it('should load a file from the real filesystem', function () {
+			const PATH = './test/fixtures/file1';
+			adapter({ '/test': adapter.load(PATH) });
+
+			expect(fs.readFileSync('/test', 'utf8')).to.equal(FIXTURE.file1);
+		});
+
+		it('should load a directory including everything it contains from the real filesystem', function () {
+			const PATH = './test/fixtures';
+
+			adapter({ '/test': adapter.load(PATH) });
+
+			expect(fs.readFileSync('/test/file1', 'utf8')).to.equal(FIXTURE.file1);
+			expect(fs.readFileSync('/test/file2', 'utf8')).to.equal(FIXTURE.file2);
+			expect(fs.readFileSync('/test/directory/file3', 'utf8')).to.equal(FIXTURE.file3);
+			expect(fs.readFileSync('/test/directory/file4', 'utf8')).to.equal(FIXTURE.file4);
+			expect(fs.readFileSync('/test/directory/subdir/file5', 'utf8')).to.equal(FIXTURE.file5);
+		});
+
+		it('should load a directory including only the files it contains from the real filesystem when recursive=false', function () {
+			const PATH = './test/fixtures';
+			adapter({ '/test': adapter.load(PATH, { recursive: false }) });
+
+			expect(fs.readFileSync('/test/file1', 'utf8')).to.equal(FIXTURE.file1);
+			expect(fs.readFileSync('/test/file2', 'utf8')).to.equal(FIXTURE.file2);
+			expect(fs.existsSync('/test/directory')).to.be.false;
+		});
+
+		it('should duplicate stats', function () {
+			const PATH = './test/fixtures/file1';
+			const expected = fs.statSync(PATH);
+
+			adapter({ '/test': adapter.load(PATH) });
+			const actual = fs.statSync('/test');
+
+			['mode', 'uid', 'gid', 'atime', 'mtime'].forEach(stat => {
+				expect(actual[stat]).to.deep.equal(expected[stat]);
+			});
+		});
+	});
 });
