@@ -23,9 +23,9 @@
     "memory-fs",
     "adapter"
   ],
-  "export": {
-    ".": "dist/index.js",
-    "bootstrap": "dist/loader/register.js"
+  "exports": {
+    ".": "./dist/index.js",
+    "./bootstrap": "./dist/bootstrap/register.js"
   },
   "scripts": {
     "build": "rm -rf dist && npx tsc",
@@ -64,9 +64,8 @@
     "typescript-eslint-language-service": "^5.0.5"
   },
   "mocha": {
-    "node-option": [
-      "import=tsx",
-      "import=./src/bootstrap/register.js"
+    "require": [
+      "tsx", "./src/bootstrap/register.ts"
     ],
     "recursive": true
   },
