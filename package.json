@@ -29,7 +29,6 @@
   },
   "scripts": {
     "build": "rm -rf dist && npx tsc",
-    "pretest": "npm run build",
     "test": "mocha test/**/*.spec.ts",
     "debug-test": "mocha --inspect-wait=0.0.0.0:9229 test/**/*.spec.ts",
     "debug-local-test": "mocha inspect test/**/*.spec.ts",
