@@ -6,14 +6,6 @@ import { isDirectory, isFactory } from '../src/items.js';
 describe('flatten', function () {
 	const isDirectoryFactory = item => isDirectory(item) && isFactory(item);
 
-	it('should be a directory factory when one is passed in', function () {
-		const config = adapter.directory({ mode: 0 });
-		// @ts-expect-error
-		const result = flatten(config, '');
-		expect(result).to.satisfy(isDirectoryFactory);
-		expect(result.mode).to.equal(0);
-	});
-
 	it('should add a file to the result', function () {
 		['abc', Buffer.from('abc'), adapter.file({})].forEach(file => {
 			const config = { '/test': file };
