@@ -14,9 +14,9 @@ Install:
 npm install --save-dev memfs-adapter
 ```
 
-Note that this library requires Node.js 20 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then. I may address this in the future.
+Note that this library requires Node.js 20 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
 
-Use as you would mock-fs.
+Use as you would mock-fs:
 
 ```
 import mockfs from 'memfs-adapter';
@@ -38,7 +38,7 @@ Or, with e.g. mocha:
 mocha --require=memfs-adapter/bootstrap
 ```
 
-Better yet, you can do this in your [`mocha` configuration file or your `package.json`](https://mochajs.org/#configuring-mocha-nodejs):
+Better yet, you can do this in your [`mocha` configuration file or `package.json`](https://mochajs.org/#configuring-mocha-nodejs):
 ```
 "mocha": {
     "require": "memfs-adapter/bootstrap"
@@ -47,7 +47,9 @@ Better yet, you can do this in your [`mocha` configuration file or your `package
 
 ## API
 
-This package aims to be a drop-in replacement for mock-fs, and in most cases it should be enough to replace your import of mock-fs with it. For how to use, please refer to the [API documentation of mock-fs](https://github.com/tschaub/mock-fs#docs). There are, however, some differences:
+This package aims to be a drop-in replacement for mock-fs, and in most cases it should be enough to replace your import of mock-fs with it. For how to use, please refer to the [API documentation of mock-fs](https://github.com/tschaub/mock-fs#docs). 
+
+There are, however, some differences:
 
 1. When using [file/directory/symlink factories](https://github.com/tschaub/mock-fs#mockfileproperties), setting `birthtime` and `ctime` is not supported. They are silently ignored. 
 
