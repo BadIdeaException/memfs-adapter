@@ -7,6 +7,7 @@ describe('Module resolution hook', function () {
 		'W_OK',
 		'X_OK',
 		'constants',
+		'promises',
 		'Stats',
 		'Dir',
 		'Dirent',

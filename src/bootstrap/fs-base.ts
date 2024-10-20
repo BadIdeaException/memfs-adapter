@@ -7,6 +7,7 @@ export const R_OK = fs.R_OK;
 export const W_OK = fs.W_OK;
 export const X_OK = fs.X_OK;
 export const constants = fs.constants;
+export const promises = fs.promises;
 export const Stats = fs.Stats;
 export const Dir = fs.Dir;
 export const Dirent = fs.Dirent;
