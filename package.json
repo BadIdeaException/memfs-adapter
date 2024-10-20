@@ -28,11 +28,11 @@
     "./bootstrap": "./dist/bootstrap/register.js"
   },
   "scripts": {
-    "build": "rm -rf dist && npx tsc",
+    "build": "npx rimraf dist && npx tsc",
     "test": "mocha test/**/*.spec.ts",
     "debug-test": "mocha --inspect-wait=0.0.0.0:9229 test/**/*.spec.ts",
     "debug-local-test": "mocha inspect test/**/*.spec.ts",
-    "posttest": "find test/ -type f -name '*.spec.js' -delete",
+    "posttest": "npx rimraf --glob 'test/**/*.js'",
     "coverage": "npx c8 npm test"
   },
   "author": "BadIdeaException",
@@ -57,6 +57,7 @@
     "eslint-plugin-mocha": "^10.5.0",
     "mocha": "^10.7.3",
     "prettier": "^3.3.3",
+    "rimraf": "^6.0.1",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.6.0",
@@ -64,7 +65,8 @@
   },
   "mocha": {
     "require": [
-      "tsx", "./src/bootstrap/register.ts"
+      "tsx",
+      "./src/bootstrap/register.ts"
     ],
     "recursive": true
   },
