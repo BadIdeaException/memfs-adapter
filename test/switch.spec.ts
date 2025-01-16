@@ -4,20 +4,28 @@ import { fileURLToPath } from 'node:url';
 
 describe('Switching proxy', function () {
 	it('should use a fake fs when activated', async function () {
-		const fs = (await import('node:fs')).default;
+		const mod = await import('node:fs');
+		const fs = mod.default;
+		const existsSync = mod.existsSync;
 		try {
 			activate();
 			// If this is a fake fs, then the test file we are curently running should not be present
-			return expect(fs.existsSync(fileURLToPath(import.meta.url))).to.be.false;
+			expect(existsSync(fileURLToPath(import.meta.url)), 'named export').to.be.false;
+			expect(fs.existsSync(fileURLToPath(import.meta.url)), 'default export').to.be.false;
 		} finally {
 			deactivate();
 		}
 	});
 
 	it('should use the real fs when deactivated', async function () {
+		activate();
+		const mod = await import('node:fs');
+		const fs = mod.default;
+		const existsSync = mod.existsSync;
 		deactivate();
-		const fs = (await import('node:fs')).default;
+		
 		// If this is the real fs, then surely the test file we are currently running should exist
-		return expect(fs.existsSync(fileURLToPath(import.meta.url))).to.be.true;
+		expect(existsSync(fileURLToPath(import.meta.url)), 'named export').to.be.true;
+		expect(fs.existsSync(fileURLToPath(import.meta.url)), 'default export').to.be.true;
 	});
 });

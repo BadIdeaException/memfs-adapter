@@ -1,3 +1,6 @@
+> [!CAUTION]
+> **This project is currently suspended due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
+
 # memfs-adapter
 
 **This package brings the pleasant interface and ease of use of [mock-fs](https://github.com/tschaub/mock-fs) built on top of the power and futureproofness of [memfs](https://github.com/streamich/memfs).** 
