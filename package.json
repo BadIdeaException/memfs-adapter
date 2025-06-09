@@ -85,5 +85,8 @@
     "bracketSpacing": true,
     "arrowParens": "avoid",
     "printWidth": 100
+  },
+  "engines": {
+    "node": ">=23.5.0"
   }
 }

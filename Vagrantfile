@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
   # Expose port 9229 to allow debugging
   config.vm.network :forwarded_port, guest: 9229, host: 9229
 
-  config.vm.provision "shell", name: "Install Node.JS", env: { "NODE_MAJOR" => "22" }, inline: <<-SHELL
+  config.vm.provision "shell", name: "Install Node.JS", env: { "NODE_MAJOR" => "23" }, inline: <<-SHELL
     # Install necessary packages for downloading and verifying new repository information
     apt-get install -y ca-certificates curl gnupg
     # Create a directory for the new repository's keyring, if it doesn't exist

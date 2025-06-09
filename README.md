@@ -1,5 +1,5 @@
 > [!CAUTION]
-> **This project is currently suspended due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
+> **This project is back under active development, but requires Node.js 23.5 or later due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
 
 # memfs-adapter
 
@@ -17,7 +17,7 @@ Install:
 npm install --save-dev memfs-adapter
 ```
 
-Note that this library requires Node.js 20 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
+Note that this library requires Node.js 23.5 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
 
 Use as you would mock-fs:
 
