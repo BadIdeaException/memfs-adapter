@@ -1,4 +1,4 @@
-> [!CAUTION]
+> [!INFO]
 > **This project is back under active development, but requires Node.js 23.5 or later due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
 
 # memfs-adapter
