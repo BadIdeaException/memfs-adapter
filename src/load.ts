@@ -14,9 +14,8 @@ export default function load(target: string, recursive: boolean): DirectoryLiter
 		});
 		// Experimentally determined: in non-recursive mode, mockfs omits all child directories entirely
 		if (!recursive) dirents = dirents.filter(dirent => dirent.isFile());
-
 		const children: string[] = dirents.map((dirent: Dirent): string =>
-			path.join(dirent.path, dirent.name)
+			path.join(dirent.parentPath, dirent.name)
 		);
 		candidates = candidates.concat(children);
 	}
