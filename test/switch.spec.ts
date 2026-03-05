@@ -28,4 +28,27 @@ describe('Switching proxy', function () {
 		expect(existsSync(fileURLToPath(import.meta.url)), 'named export').to.be.true;
 		expect(fs.existsSync(fileURLToPath(import.meta.url)), 'default export').to.be.true;
 	});
+
+	it('should share a fake fs across module instances', async function() {
+		// This test checks that switcher state is shared across module instances.
+		// It forcibly loads a second instance of the switcher module.
+		// It then makes sure that the two loaded modules are, in fact, different.
+		// It then checks that the return result of activating on the one module and subsequently deactivating
+		// on the other module are identical. (This takes advantage of the fact that activate() returns the newly
+		// activated file system, and deactivate() returns the deactivated file system.)
+		const modA = await import('../src/bootstrap/switch.js');
+		// @ts-expect-error: Cannot find module fs?cache-bust
+		const modB = await import('../src/bootstrap/switch.js?cache-bust');
+
+		
+		// The imported modules should not be strictly equal
+		expect(modA).to.not.equal(modB);
+		try {
+			const fs = modA.activate();
+			expect(modB.deactivate()).to.equal(fs);
+		} finally {
+			// Make sure we don't leave modA activated if state is NOT shared.
+			modA.deactivate();
+		}
+	});
 });
