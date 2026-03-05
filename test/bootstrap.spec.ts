@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { createRequire } from 'node:module';
 
 describe('Module resolution hook', function () {
 	const EXPORTS_BASE = [
@@ -140,7 +141,8 @@ describe('Module resolution hook', function () {
 		'writeFile'
 	];
 
-	it('should import the switched-out library', async function () {
+	
+	it('should import the switched-out library in ESM', async function () {
 		await Promise.all(
 			['fs', 'node:fs'].map(async specifier => {
 				const imported = await import(specifier);
@@ -158,6 +160,23 @@ describe('Module resolution hook', function () {
 				return expect(imported, specifier).to.equal(expected);
 			})
 		);
+	});
+
+	it('should import the switched-out library in CJS', function() {
+		const require = createRequire(import.meta.url);
+		['fs', 'node:fs'].forEach(specifier => {
+			const imported = require(specifier);
+			const expected = require('../src/bootstrap/fs-base.js');
+
+			expect(imported, specifier).to.equal(expected);
+		});
+
+		['fs/promises', 'node:fs/promises'].forEach(specifier => {
+			const imported = require(specifier);
+			const expected = require('../src/bootstrap/fs-promises.js');
+
+			expect(imported, specifier).to.equal(expected);
+		});
 	});
 
 	it('should have default export', async function () {
