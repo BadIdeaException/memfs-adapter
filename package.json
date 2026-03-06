@@ -63,6 +63,9 @@
 		"typescript-eslint": "^8.6.0",
 		"typescript-eslint-language-service": "^5.0.5"
 	},
+  "overrides": {
+    "yargs": ">=18.0"
+  },
 	"mocha": {
 		"require": [
 			"tsx",
