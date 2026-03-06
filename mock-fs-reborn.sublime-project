@@ -1,13 +1,11 @@
 {
-	"debugger_configurations":
-	[
+	"debugger_configurations": [
 		{
 			"cwd": "${workspaceFolder}",
 			"name": "Launch via npm",
 			"outputCapture": "std",
 			"request": "launch",
-			"runtimeArgs":
-			[
+			"runtimeArgs": [
 				"ssh",
 				"-t",
 				"-c",
@@ -17,12 +15,11 @@
 			"type": "node"
 		}
 	],
-	"folders":
-	[
+	"folders": [
 		{
 			"path": ".",
-			"folder_exclude_patterns": [ ".vagrant", "node_modules", ".c8" ],
-			"binary_file_patterns": [ "dist/**" ]
+			"folder_exclude_patterns": [".vagrant", "node_modules", ".c8"],
+			"binary_file_patterns": ["dist/**"]
 		}
 	]
 }

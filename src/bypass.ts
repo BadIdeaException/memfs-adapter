@@ -5,4 +5,4 @@ export default function <T>(op: () => T): T {
 	const result: T = op();
 	activate(_fs);
 	return result;
-};
+}

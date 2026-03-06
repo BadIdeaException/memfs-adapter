@@ -137,7 +137,6 @@ describe('Module resolution hook', function () {
 		'writeFile'
 	];
 
-	
 	it('should import the switched-out library in ESM', async function () {
 		await Promise.all(
 			['fs', 'node:fs'].map(async specifier => {
@@ -158,7 +157,7 @@ describe('Module resolution hook', function () {
 		);
 	});
 
-	it('should import the switched-out library in CJS', function() {
+	it('should import the switched-out library in CJS', function () {
 		const require = createRequire(import.meta.url);
 		['fs', 'node:fs'].forEach(specifier => {
 			const imported = require(specifier);
@@ -192,5 +191,4 @@ describe('Module resolution hook', function () {
 		const promises = await import('../src/bootstrap/fs-promises.js');
 		expect(promises).to.include.all.keys(EXPORTS_PROMISES);
 	});
-
 });

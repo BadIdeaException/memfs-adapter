@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { fs } from './switch.js';
 
-// Re-export these as BINDINGS, so this module's export updates when the corresponding export in switch.js changes. 
-// This is different from doing 
+// Re-export these as BINDINGS, so this module's export updates when the corresponding export in switch.js changes.
+// This is different from doing
 // 		import { constants as _constants } from './switch.js';
 // 		export let constants = _constants;
-// which would re-export the VALUE. 
+// which would re-export the VALUE.
 export { constants, Stats, Dir, Dirent, ReadStream, WriteStream } from './switch.js';
 
 export default fs;

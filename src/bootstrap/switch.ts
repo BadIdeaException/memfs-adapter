@@ -8,17 +8,16 @@ import real from 'fs?mock-fs-reborn-import';
 import type fs from 'fs?mock-fs-reborn-import';
 import { Volume, createFsFromVolume } from 'memfs';
 
-
 // Set up global state.
-// 
-// We can't just use a module-local variable, because it leads to difficult-to-trace bugs in instances where the 
-// module gets loaded more than once. Theoretically that shouldn't happen anyway, but in practice it can when 
+//
+// We can't just use a module-local variable, because it leads to difficult-to-trace bugs in instances where the
+// module gets loaded more than once. Theoretically that shouldn't happen anyway, but in practice it can when
 // tools introduce their own resolution chains (e.g. tsx)
 // We will play it extra safe here for a better developer experience when using this module.
-const ACTIVE: unique symbol = Symbol.for("mock-fs-reborn:active");
+const ACTIVE: unique symbol = Symbol.for('mock-fs-reborn:active');
 type GlobalState = {
-	[ACTIVE]: fs
-}
+	[ACTIVE]: fs;
+};
 
 export let constants = real.constants;
 export let Stats = real.Stats;
@@ -71,7 +70,7 @@ function updateConstants(): void {
 export function activate(fake?: fs): fs {
 	fake ??= createFsFromVolume(new Volume());
 	(globalThis as typeof globalThis & GlobalState)[ACTIVE] = fake;
-	updateConstants();	
+	updateConstants();
 	return active();
 }
 
