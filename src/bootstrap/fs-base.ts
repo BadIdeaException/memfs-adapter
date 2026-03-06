@@ -3,10 +3,10 @@ import { fs } from './switch.js';
 
 // Re-export these as BINDINGS, so this module's export updates when the corresponding export in switch.js changes. 
 // This is different from doing 
-// 		import { F_OK as F_OK } from './switch.js';
-// 		export let F_OK = _F_OK;
+// 		import { constants as _constants } from './switch.js';
+// 		export let constants = _constants;
 // which would re-export the VALUE. 
-export { F_OK, R_OK , W_OK, X_OK, constants, Stats, Dir, Dirent, ReadStream, WriteStream } from './switch.js';
+export { constants, Stats, Dir, Dirent, ReadStream, WriteStream } from './switch.js';
 
 export default fs;
 

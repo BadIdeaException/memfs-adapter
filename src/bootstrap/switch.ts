@@ -20,10 +20,6 @@ type GlobalState = {
 	[ACTIVE]: fs
 }
 
-export let F_OK = real.F_OK;
-export let R_OK = real.R_OK;
-export let W_OK = real.W_OK;
-export let X_OK = real.X_OK;
 export let constants = real.constants;
 export let Stats = real.Stats;
 export let Dir = real.Dir;
@@ -63,10 +59,6 @@ export const promises = new Proxy<fs.promises>(real.promises, {
 });
 
 function updateConstants(): void {
-	F_OK = active().F_OK;
-	R_OK = active().R_OK;
-	W_OK = active().W_OK;
-	X_OK = active().X_OK;
 	constants = active().constants;
 	Stats = active().Stats;
 	Dir = active().Dir;

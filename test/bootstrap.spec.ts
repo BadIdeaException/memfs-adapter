@@ -100,10 +100,6 @@ describe('Module resolution hook', function () {
 		'Dir',
 		'opendir',
 		'opendirSync',
-		'F_OK',
-		'R_OK',
-		'W_OK',
-		'X_OK',
 		'constants',
 		'promises'
 	];
