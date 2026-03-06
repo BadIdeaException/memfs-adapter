@@ -2,10 +2,10 @@
 
 // Import the real fs module. Note the query part - this will indicate to our custom loader not to replace this
 // import with the switch.
-// @ts-expect-error: Cannot find module fs?memfs-adapter-import
-import real from 'fs?memfs-adapter-import';
-// @ts-expect-error: Cannot find module fs?memfs-adapter-import
-import type fs from 'fs?memfs-adapter-import';
+// @ts-expect-error: Cannot find module fs?mock-fs-reborn-import
+import real from 'fs?mock-fs-reborn-import';
+// @ts-expect-error: Cannot find module fs?mock-fs-reborn-import
+import type fs from 'fs?mock-fs-reborn-import';
 import { Volume, createFsFromVolume } from 'memfs';
 
 
@@ -15,7 +15,7 @@ import { Volume, createFsFromVolume } from 'memfs';
 // module gets loaded more than once. Theoretically that shouldn't happen anyway, but in practice it can when 
 // tools introduce their own resolution chains (e.g. tsx)
 // We will play it extra safe here for a better developer experience when using this module.
-const ACTIVE: unique symbol = Symbol.for("memfs-adapter:active");
+const ACTIVE: unique symbol = Symbol.for("mock-fs-reborn:active");
 type GlobalState = {
 	[ACTIVE]: fs
 }

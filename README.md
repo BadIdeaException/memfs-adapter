@@ -1,7 +1,7 @@
 > [!INFO]
 > **This project is back under active development, but requires Node.js 23.5 or later due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
 
-# memfs-adapter
+# mock-fs-reborn
 
 **This package brings the pleasant interface and ease of use of [mock-fs](https://github.com/tschaub/mock-fs) built on top of the power and futureproofness of [memfs](https://github.com/streamich/memfs).** 
 
@@ -14,7 +14,7 @@ If you want to know more about why this may be a good idea, skip ahead to the [#
 Install:
 
 ```
-npm install --save-dev memfs-adapter
+npm install --save-dev mock-fs-reborn
 ```
 
 Note that this library requires Node.js 23.5 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
@@ -22,7 +22,7 @@ Note that this library requires Node.js 23.5 or later. On the other hand, mock-f
 Use as you would mock-fs:
 
 ```
-import mockfs from 'memfs-adapter';
+import mockfs from 'mock-fs-reborn';
 import fs from 'node:fs';
 
 mockfs({ '/foo': 'bar' });
@@ -30,21 +30,21 @@ mockfs({ '/foo': 'bar' });
 fs.readFileSync('/foo'); // 'bar'
 ```
 
-When run, make sure that `memfs-adapter/bootstrap` is imported **before** the first import of the `fs` module. This can most reliably be achieved by running your file with the `import` flag: 
+When run, make sure that `mock-fs-reborn/bootstrap` is imported **before** the first import of the `fs` module. This can most reliably be achieved by running your file with the `import` flag: 
 ```
-node --import=memfs-adapter/bootstrap index.js
+node --import=mock-fs-reborn/bootstrap index.js
 ``` 
 
 Or, with e.g. mocha:
 
 ```
-mocha --require=memfs-adapter/bootstrap
+mocha --require=mock-fs-reborn/bootstrap
 ```
 
 Better yet, you can do this in your [`mocha` configuration file or `package.json`](https://mochajs.org/#configuring-mocha-nodejs):
 ```
 "mocha": {
-    "require": "memfs-adapter/bootstrap"
+    "require": "mock-fs-reborn/bootstrap"
 }
 ```
 

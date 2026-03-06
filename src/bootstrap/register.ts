@@ -9,7 +9,7 @@ import { dirname, join } from 'node:path';
 
 const resolve: ResolveHookSync = function resolve(specifier, context, nextResolve) {
 	// Allow the import done by the switch to get the real fs module.
-	if (specifier === 'fs?memfs-adapter-import') return nextResolve('node:fs', context);
+	if (specifier === 'fs?mock-fs-reborn-import') return nextResolve('node:fs', context);
 
 	const path: string = fileURLToPath(import.meta.url);
 	const dir: string = dirname(path);

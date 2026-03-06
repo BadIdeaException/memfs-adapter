@@ -1,12 +1,12 @@
 {
-  "name": "memfs-adapter",
+  "name": "mock-fs-reborn",
   "type": "module",
   "version": "1.0.0",
   "description": "Filesystem mocking with the mock-fs API built on top of memfs.",
-  "homepage": "https://github.com/BadIdeaException/memfs-adapter",
+  "homepage": "https://github.com/BadIdeaException/mock-fs-reborn",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BadIdeaException/memfs-adapter.git"
+    "url": "https://github.com/BadIdeaException/mock-fs-reborn.git"
   },
   "keywords": [
     "mock-fs",
