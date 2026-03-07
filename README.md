@@ -1,13 +1,10 @@
-> [!INFO]
-> **This project is back under active development, but requires Node.js 23.5 or later due to a [critical bug in Node.js loaders](https://github.com/nodejs/node/issues/55878).**
-
 # mock-fs-reborn
 
 **This package brings the pleasant interface and ease of use of [mock-fs](https://github.com/tschaub/mock-fs) built on top of the power and futureproofness of [memfs](https://github.com/streamich/memfs).**
 
-It is designed to be a drop-in replacement for mock-fs (with some [minor caveats](#API)).
+It is designed to be, as much as possible, a drop-in replacement for mock-fs (with some [minor caveats](#API)).
 
-If you want to know more about why this may be a good idea, skip ahead to the [#Motivation] section.
+If you want to know more about why this may be a good idea, skip ahead to the [Motivation](#Motivation) section.
 
 ## Usage
 
@@ -17,7 +14,7 @@ Install:
 npm install --save-dev mock-fs-reborn
 ```
 
-Note that this library requires Node.js 23.5 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
+Note that this library requires Node.js 25.4 or later. On the other hand, mock-fs works without problem in Node versions earlier than that, so you probably don't need this library at all then.
 
 Use as you would mock-fs:
 
