@@ -1,7 +1,7 @@
 {
 	"name": "mock-fs-reborn",
 	"type": "module",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Filesystem mocking with the mock-fs API built on top of memfs.",
 	"homepage": "https://github.com/BadIdeaException/mock-fs-reborn",
 	"repository": {
